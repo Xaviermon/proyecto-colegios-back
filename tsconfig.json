@@ -1,0 +1,25 @@
+{
+  "compilerOptions": {
+    "target": "ES6",                        // Versión de ECMAScript
+    "module": "commonjs",                   // Sistema de módulos
+    "outDir": "./build",                    // Carpeta de salida para los archivos compilados
+    "rootDir": "./src",                     // Carpeta de entrada con los archivos fuente
+    "strict": true,                          // Habilitar todas las comprobaciones estrictas
+    "esModuleInterop": true,                 // Habilitar interop de ES Modules
+    "skipLibCheck": true,                   // Saltar la verificación de tipo en archivos de definición de bibliotecas
+    "forceConsistentCasingInFileNames": true, // Forzar consistencia en el uso de mayúsculas y minúsculas en nombres de archivo
+    "moduleResolution": "node",              // Resolución de módulos al estilo Node.js
+    "baseUrl": "./src",                     // Base URL para las importaciones
+    "allowJs": true,
+    "paths": {
+      "*": ["node_modules/*"]               // Rutas para resolver módulos
+    }
+  },
+  "include": [
+    "src/**/*"                               // Incluir todos los archivos en la carpeta src
+  ],
+  "exclude": [
+    "node_modules",                          // Excluir la carpeta node_modules
+    "**/*.spec.ts"                           // Excluir archivos de prueba si los tienes
+  ]
+}

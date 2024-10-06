@@ -1,0 +1,34 @@
+project-root/
+│
+├── src/                  # Carpeta principal del código fuente
+│   ├── controllers/       # Controladores (lógica de negocio)
+│   ├── services/          # Servicios (lógica de negocio)
+│   ├── models/            # Modelos de datos (interfaces o clases)
+│   ├── routes/            # Definición de rutas (enrutadores)
+│   ├── middlewares/       # Middlewares (autenticación, validación)
+│   ├── config/            # Configuraciones generales
+│   ├── utils/             # Utilidades y helpers
+│   ├── database/          # Inicialización y conexión de la base de datos
+│   ├── repositories/      # Repositorios (interacción con la base de datos)
+│   ├── validators/        # Validación de datos de entrada
+│   ├── constants/         # Constantes
+│   ├── types/             # Definiciones de tipos (si es necesario)
+│   └── app.ts             # Archivo principal de la aplicación
+│
+├── tests/                 # Tests unitarios e integración
+│   ├── unit/              # Pruebas unitarias
+│   └── integration/       # Pruebas de integración
+│
+├── docs/                  # Documentación del proyecto
+│
+├── scripts/               # Scripts de automatización
+│
+├── public/                # Archivos públicos
+│
+├── logs/                  # Archivos de logs
+│
+├── .env                   # Variables de entorno
+├── .gitignore             # Archivos a ignorar por git
+├── package.json           # Dependencias y scripts del proyecto
+├── tsconfig.json          # Configuración de TypeScript
+└── README.md              # Descripción del proyecto
