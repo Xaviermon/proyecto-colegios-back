@@ -1,10 +1,10 @@
 import { Sequelize, Model, DataTypes, Optional } from "sequelize";
 
 interface InstructorAttributes {
-  id: number,
-  name: string,
-  email: string,
-  hireDate: Date
+  id: number;
+  name: string;
+  email: string;
+  hireDate: Date;
 
   createdAt?: Date;
   updatedAt?: Date;
@@ -13,9 +13,10 @@ interface InstructorAttributes {
 export interface InstructorInput extends Optional<InstructorAttributes, "id"> {}
 export interface InstructorOutput extends Required<InstructorAttributes> {}
 
-class Teacher 
+class Teacher
   extends Model<InstructorAttributes, InstructorInput>
-  implements InstructorAttributes {
+  implements InstructorAttributes
+{
   // Propiedades del modelo
   public id!: number;
   public name!: string;
@@ -32,20 +33,20 @@ module.exports = (sequelize: Sequelize) => {
       id: {
         type: DataTypes.INTEGER,
         autoIncrement: true,
-        primaryKey: true
+        primaryKey: true,
       },
       name: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: false,
       },
       email: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: false,
       },
       hireDate: {
         type: DataTypes.DATE,
-        allowNull: false
-      }
+        allowNull: false,
+      },
     },
     {
       sequelize,
@@ -53,6 +54,6 @@ module.exports = (sequelize: Sequelize) => {
       timestamps: true,
       underscored: false,
     }
-  )
-  return Teacher
-}
+  );
+  return Teacher;
+};

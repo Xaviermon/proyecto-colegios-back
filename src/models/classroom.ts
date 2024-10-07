@@ -1,9 +1,9 @@
 import { Sequelize, Model, DataTypes, Optional } from "sequelize";
 
 interface ClassRoomAttributes {
-  id: number,
-  name: string,
-  capacity: number,
+  id: number;
+  name: string;
+  capacity: number;
 
   createdAt?: Date;
   updatedAt?: Date;
@@ -12,9 +12,10 @@ interface ClassRoomAttributes {
 export interface ClassRoomInput extends Optional<ClassRoomAttributes, "id"> {}
 export interface ClassRoomOutput extends Required<ClassRoomAttributes> {}
 
-class ClassRoom 
+class ClassRoom
   extends Model<ClassRoomAttributes, ClassRoomInput>
-  implements ClassRoomAttributes {
+  implements ClassRoomAttributes
+{
   // Propiedades del modelo
   public id!: number;
   public name!: string;
@@ -30,16 +31,16 @@ module.exports = (sequelize: Sequelize) => {
       id: {
         type: DataTypes.INTEGER,
         autoIncrement: true,
-        primaryKey: true
+        primaryKey: true,
       },
       name: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: false,
       },
       capacity: {
         type: DataTypes.INTEGER,
-        allowNull: false
-      }
+        allowNull: false,
+      },
     },
     {
       sequelize,
@@ -47,6 +48,6 @@ module.exports = (sequelize: Sequelize) => {
       timestamps: true,
       underscored: false,
     }
-  )
-  return ClassRoom
-}
+  );
+  return ClassRoom;
+};

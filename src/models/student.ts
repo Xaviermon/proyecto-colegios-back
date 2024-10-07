@@ -1,22 +1,24 @@
 import { Sequelize, Model, DataTypes, Optional } from "sequelize";
 
 interface StudentAttributes {
-  id: number,
-  name: string,
-  email: string,
-  grade: string,
-  enrollmentData: Date
+  id: number;
+  name: string;
+  email: string;
+  grade: string;
+  enrollmentData: Date;
 
   createdAt?: Date;
   updatedAt?: Date;
 }
 
-export interface StudentAttributesInput extends Optional<StudentAttributes, "id"> {}
+export interface StudentAttributesInput
+  extends Optional<StudentAttributes, "id"> {}
 export interface StudentAttributesOutput extends Required<StudentAttributes> {}
 
-class Student 
+class Student
   extends Model<StudentAttributes, StudentAttributesInput>
-  implements StudentAttributes {
+  implements StudentAttributes
+{
   // Propiedades del modelo
   public id!: number;
   public name!: string;
@@ -34,24 +36,24 @@ module.exports = (sequelize: Sequelize) => {
       id: {
         type: DataTypes.INTEGER,
         autoIncrement: true,
-        primaryKey: true
+        primaryKey: true,
       },
       name: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: false,
       },
       email: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: false,
       },
       enrollmentData: {
         type: DataTypes.DATE,
-        allowNull: false
+        allowNull: false,
       },
       grade: {
         type: DataTypes.STRING,
-        allowNull: false
-      }
+        allowNull: false,
+      },
     },
     {
       sequelize,
@@ -59,6 +61,6 @@ module.exports = (sequelize: Sequelize) => {
       timestamps: true,
       underscored: false,
     }
-  )
-  return Student
-}
+  );
+  return Student;
+};
