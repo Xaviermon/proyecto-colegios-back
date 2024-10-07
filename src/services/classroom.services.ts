@@ -43,7 +43,7 @@ export const createClassRoom = async (name: string, capacity: number) => {
 export const updateClassRoom = async (
   id: number,
   name: string,
-  capacity: string
+  capacity: number
 ) => {
   const findClassRoom = await db.ClassRoom.findOne({
     where: { id },

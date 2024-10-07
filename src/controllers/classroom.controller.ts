@@ -30,3 +30,14 @@ export const createClassRoomController = async (req: Request, res:Response) => {
     return ErrorHelper(res, error)
   }
 }
+
+export const updateClassRoomController = async(req: Request, res: Response) => {
+  try {
+    const { id, name, capacity } : ClassRoomInput = req.body
+    if (id) {
+      const newUpdateClassRoom = await updateClassRoom(id, name, capacity)
+    }
+  } catch (error) {
+    
+  }
+}
