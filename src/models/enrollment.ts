@@ -1,6 +1,6 @@
 import { Sequelize, Model, DataTypes, Optional } from "sequelize";
 
-interface EnrollmentAttributes {
+export interface EnrollmentAttributes {
   id: number;
   enrollmentDate: Date;
 

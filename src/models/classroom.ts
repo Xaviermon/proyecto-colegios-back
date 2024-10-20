@@ -1,6 +1,6 @@
 import { Sequelize, Model, DataTypes, Optional } from "sequelize";
 
-interface ClassRoomAttributes {
+export interface ClassRoomAttributes {
   id: number;
   name: string;
   capacity: number;
