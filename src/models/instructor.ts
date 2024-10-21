@@ -25,6 +25,10 @@ class Teacher
 
   public readonly createdAt!: Date;
   public readonly updatedAt!: Date;
+
+  static associate(models: any) {
+    Teacher.belongsToMany(models.Course, { through: "Course_Teacher" })
+  }
 }
 
 module.exports = (sequelize: Sequelize) => {
@@ -50,7 +54,7 @@ module.exports = (sequelize: Sequelize) => {
     },
     {
       sequelize,
-      modelName: "Instructor",
+      modelName: "Teacher",
       timestamps: true,
       underscored: false,
     }

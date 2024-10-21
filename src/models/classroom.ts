@@ -23,6 +23,10 @@ class ClassRoom
 
   public readonly createdAt!: Date;
   public readonly updatedAt!: Date;
+
+  static associate(models: any) {
+    ClassRoom.hasMany(models.Schedule, { foreignKey: 'classRoomId', as: 'schedules' });
+  }
 }
 
 module.exports = (sequelize: Sequelize) => {

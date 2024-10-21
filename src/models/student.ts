@@ -28,6 +28,10 @@ class Student
 
   public readonly createdAt!: Date;
   public readonly updatedAt!: Date;
+
+  static associate(models: any) {
+    Student.hasMany(models.Enrollment, { foreignKey: 'studentId', as: 'enrollments' });
+  }
 }
 
 module.exports = (sequelize: Sequelize) => {

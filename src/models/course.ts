@@ -24,6 +24,12 @@ class Course
 
   public readonly createdAt!: Date;
   public readonly updatedAt!: Date;
+
+  static associate(models: any) {
+    Course.hasMany(models.Enrollment, { foreignKey: 'courseId', as: 'enrollments' });
+    Course.hasMany(models.Schedule, { foreignKey: 'courseId', as: 'schedules' });
+    Course.belongsToMany(models.Teacher, { through: "Course_Teacher" })
+  }
 }
 
 module.exports = (sequelize: Sequelize) => {

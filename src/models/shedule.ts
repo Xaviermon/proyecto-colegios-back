@@ -1,51 +1,59 @@
 import { Sequelize, Model, DataTypes, Optional } from "sequelize";
 
-export interface EnrollmentAttributes {
+export interface SheduleAttributes {
   id: number;
-  enrollmentDate: Date;
-  studentId: number;
+  startTime: Date;
+  endTime: Date;
   courseId: number;
+  classRoomId: number;
+
   createdAt?: Date;
   updatedAt?: Date;
 }
 
-export interface EnrollmentInput extends Optional<EnrollmentAttributes, "id"> {}
-export interface EnrollmentOutput extends Required<EnrollmentAttributes> {}
+export interface SheduleInput extends Optional<SheduleAttributes, "id"> {}
+export interface SheduleOutput extends Required<SheduleAttributes> {}
 
-class Enrollment
-  extends Model<EnrollmentAttributes, EnrollmentInput>
-  implements EnrollmentAttributes
+class Schedule
+  extends Model<SheduleAttributes, SheduleInput>
+  implements SheduleAttributes
 {
+  // Propiedades del modelo
   public id!: number;
-  public enrollmentDate!: Date;
-  public studentId!: number;
+  public startTime!: Date;
+  public endTime!: Date;
   public courseId!: number;
+  public classRoomId!: number;
 
   public readonly createdAt!: Date;
   public readonly updatedAt!: Date;
 
   static associate(models: any) {
-    Enrollment.belongsTo(models.Student, { foreignKey: 'studentId', as: 'student' });
-    Enrollment.belongsTo(models.Course, { foreignKey: 'courseId', as: 'course' });
+    Schedule.hasMany(models.ClassRoom, { foreignKey: 'classRoomId', as: 'student' });
+    Schedule.hasMany(models.Course, { foreignKey: 'courseId', as: 'course' });
   }
 }
 
 module.exports = (sequelize: Sequelize) => {
-  Enrollment.init(
+  Schedule.init(
     {
       id: {
         type: DataTypes.INTEGER,
         autoIncrement: true,
         primaryKey: true,
       },
-      enrollmentDate: {
+      startTime: {
         type: DataTypes.DATE,
         allowNull: false,
       },
-      studentId: {
+      endTime: {
+        type: DataTypes.DATE,
+        allowNull: false,
+      },
+      classRoomId: {
         type: DataTypes.INTEGER,
         references: {
-          model: 'Students',
+          model: 'ClassRooms',
           key: 'id',
         },
       },
@@ -59,10 +67,10 @@ module.exports = (sequelize: Sequelize) => {
     },
     {
       sequelize,
-      modelName: "Enrollment",
+      modelName: "Schedule",
       timestamps: true,
       underscored: false,
     }
   );
-  return Enrollment;
+  return Schedule;
 };
