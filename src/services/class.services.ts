@@ -1,7 +1,15 @@
 import db from "../database/connect";
 import { ClassInput, ClassOutput } from "../models/Class";
 
-export const getAllClasses = async (page: number, limit: number): Promise<{ data: ClassOutput[], totalCount: number, currentPage: number, totalPages: number }> => {
+export const getAllClasses = async (
+  page: number,
+  limit: number
+): Promise<{
+  data: ClassOutput[];
+  totalCount: number;
+  currentPage: number;
+  totalPages: number;
+}> => {
   // Calculate offset for pagination
   const offset = (page - 1) * limit;
 
@@ -22,8 +30,12 @@ export const getAllClasses = async (page: number, limit: number): Promise<{ data
   };
 };
 
-export const createClass = async (data: ClassInput): Promise<ClassOutput | { message: string }> => {
-  const existingClass = await db.Class.findOne({ where: { classType: data.classType } }); // Check existence by classType (optional)
+export const createClass = async (
+  data: ClassInput
+): Promise<ClassOutput | { message: string }> => {
+  const existingClass = await db.Class.findOne({
+    where: { classType: data.classType },
+  }); // Check existence by classType (optional)
   if (existingClass) {
     return { message: `Class with type "${data.classType}" already exists` };
   }
@@ -32,7 +44,10 @@ export const createClass = async (data: ClassInput): Promise<ClassOutput | { mes
   return newClass;
 };
 
-export const updateClass = async (id: number, data: Partial<ClassInput>): Promise<ClassOutput | { message: string }> => {
+export const updateClass = async (
+  id: number,
+  data: Partial<ClassInput>
+): Promise<ClassOutput | { message: string }> => {
   const classToUpdate = await db.Class.findByPk(id);
   if (!classToUpdate) {
     return { message: `Class with ID ${id} not found` };

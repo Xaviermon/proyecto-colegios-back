@@ -5,29 +5,33 @@ export interface StudentAttributes {
   firstName: string;
   lastName: string;
   contactDetails?: string;
-  classType: 'private' | 'group';
+  classType: "private" | "group";
 
   createdAt?: Date;
   updatedAt?: Date;
 }
 
-export interface StudentInput extends Optional<StudentAttributes, "id"> { }
-export interface StudentOutput extends Required<StudentAttributes> { }
+export interface StudentInput extends Optional<StudentAttributes, "id"> {}
+export interface StudentOutput extends Required<StudentAttributes> {}
 
 class Student
   extends Model<StudentAttributes, StudentInput>
-  implements StudentAttributes {
+  implements StudentAttributes
+{
   public id!: number;
   public firstName!: string;
   public lastName!: string;
   public contactDetails?: string;
-  public classType!: 'private' | 'group';
+  public classType!: "private" | "group";
 
   public readonly createdAt!: Date;
   public readonly updatedAt!: Date;
 
   static associate(models: any) {
-    Student.hasMany(models.Enrollment, { foreignKey: 'studentId', as: 'enrollments' });
+    Student.hasMany(models.Enrollment, {
+      foreignKey: "studentId",
+      as: "enrollments",
+    });
   }
 }
 
@@ -51,7 +55,7 @@ module.exports = (sequelize: Sequelize) => {
         type: DataTypes.TEXT,
       },
       classType: {
-        type: DataTypes.ENUM('private', 'group'),
+        type: DataTypes.ENUM("private", "group"),
         allowNull: false,
       },
     },

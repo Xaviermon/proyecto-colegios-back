@@ -5,30 +5,34 @@ export interface EnrollmentAttributes {
   studentId: number;
   classId: number;
   enrollmentDate: Date;
-  paymentStatus: 'paid' | 'unpaid';
+  paymentStatus: "paid" | "unpaid";
 
   createdAt?: Date;
   updatedAt?: Date;
 }
 
-export interface EnrollmentInput extends Optional<EnrollmentAttributes, "id"> { }
-export interface EnrollmentOutput extends Required<EnrollmentAttributes> { }
+export interface EnrollmentInput extends Optional<EnrollmentAttributes, "id"> {}
+export interface EnrollmentOutput extends Required<EnrollmentAttributes> {}
 
 class Enrollment
   extends Model<EnrollmentAttributes, EnrollmentInput>
-  implements EnrollmentAttributes {
+  implements EnrollmentAttributes
+{
   public id!: number;
   public studentId!: number;
   public classId!: number;
   public enrollmentDate!: Date;
-  public paymentStatus!: 'paid' | 'unpaid';
+  public paymentStatus!: "paid" | "unpaid";
 
   public readonly createdAt!: Date;
   public readonly updatedAt!: Date;
 
   static associate(models: any) {
-    Enrollment.belongsTo(models.Student, { foreignKey: 'studentId', as: 'student' });
-    Enrollment.belongsTo(models.Class, { foreignKey: 'classId', as: 'class' });
+    Enrollment.belongsTo(models.Student, {
+      foreignKey: "studentId",
+      as: "student",
+    });
+    Enrollment.belongsTo(models.Class, { foreignKey: "classId", as: "class" });
   }
 }
 
@@ -43,15 +47,15 @@ module.exports = (sequelize: Sequelize) => {
       studentId: {
         type: DataTypes.BIGINT,
         references: {
-          model: 'Students',
-          key: 'id',
+          model: "Students",
+          key: "id",
         },
       },
       classId: {
         type: DataTypes.BIGINT,
         references: {
-          model: 'Classes',
-          key: 'id',
+          model: "Classes",
+          key: "id",
         },
       },
       enrollmentDate: {
@@ -59,7 +63,7 @@ module.exports = (sequelize: Sequelize) => {
         allowNull: false,
       },
       paymentStatus: {
-        type: DataTypes.ENUM('paid', 'unpaid'),
+        type: DataTypes.ENUM("paid", "unpaid"),
         allowNull: false,
       },
     },
