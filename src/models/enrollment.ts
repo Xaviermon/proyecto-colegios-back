@@ -2,9 +2,11 @@ import { Sequelize, Model, DataTypes, Optional } from "sequelize";
 
 export interface EnrollmentAttributes {
   id: number;
-  enrollmentDate: Date;
   studentId: number;
-  courseId: number;
+  classId: number;
+  enrollmentDate: Date;
+  paymentStatus: 'paid' | 'unpaid';
+
   createdAt?: Date;
   updatedAt?: Date;
 }
@@ -17,16 +19,17 @@ class Enrollment
   implements EnrollmentAttributes
 {
   public id!: number;
-  public enrollmentDate!: Date;
   public studentId!: number;
-  public courseId!: number;
+  public classId!: number;
+  public enrollmentDate!: Date;
+  public paymentStatus!: 'paid' | 'unpaid';
 
   public readonly createdAt!: Date;
   public readonly updatedAt!: Date;
 
   static associate(models: any) {
     Enrollment.belongsTo(models.Student, { foreignKey: 'studentId', as: 'student' });
-    Enrollment.belongsTo(models.Course, { foreignKey: 'courseId', as: 'course' });
+    Enrollment.belongsTo(models.Class, { foreignKey: 'classId', as: 'class' });
   }
 }
 
@@ -34,27 +37,31 @@ module.exports = (sequelize: Sequelize) => {
   Enrollment.init(
     {
       id: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.BIGINT,
         autoIncrement: true,
         primaryKey: true,
       },
-      enrollmentDate: {
-        type: DataTypes.DATE,
-        allowNull: false,
-      },
       studentId: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.BIGINT,
         references: {
           model: 'Students',
           key: 'id',
         },
       },
-      courseId: {
-        type: DataTypes.INTEGER,
+      classId: {
+        type: DataTypes.BIGINT,
         references: {
-          model: 'Courses',
+          model: 'Classes',
           key: 'id',
         },
+      },
+      enrollmentDate: {
+        type: DataTypes.DATE,
+        allowNull: false,
+      },
+      paymentStatus: {
+        type: DataTypes.ENUM('paid', 'unpaid'),
+        allowNull: false,
       },
     },
     {

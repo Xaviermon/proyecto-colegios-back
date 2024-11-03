@@ -1,39 +1,39 @@
 import { Sequelize, Model, DataTypes, Optional } from "sequelize";
 
-export interface StudentAttributes {
+export interface TeacherAttributes {
   id: number;
   firstName: string;
   lastName: string;
-  contactDetails?: string;
-  classType: 'private' | 'group';
+  specialty?: string;
+  availableSchedule?: string;
 
   createdAt?: Date;
   updatedAt?: Date;
 }
 
-export interface StudentInput extends Optional<StudentAttributes, "id"> {}
-export interface StudentOutput extends Required<StudentAttributes> {}
+export interface TeacherInput extends Optional<TeacherAttributes, "id"> {}
+export interface TeacherOutput extends Required<TeacherAttributes> {}
 
-class Student
-  extends Model<StudentAttributes, StudentInput>
-  implements StudentAttributes
+class Teacher
+  extends Model<TeacherAttributes, TeacherInput>
+  implements TeacherAttributes
 {
   public id!: number;
   public firstName!: string;
   public lastName!: string;
-  public contactDetails?: string;
-  public classType!: 'private' | 'group';
+  public specialty?: string;
+  public availableSchedule?: string;
 
   public readonly createdAt!: Date;
   public readonly updatedAt!: Date;
 
   static associate(models: any) {
-    Student.hasMany(models.Enrollment, { foreignKey: 'studentId', as: 'enrollments' });
+    Teacher.hasMany(models.Schedule, { foreignKey: 'teacherId', as: 'schedules' }); // Assuming a relationship
   }
 }
 
 module.exports = (sequelize: Sequelize) => {
-  Student.init(
+  Teacher.init(
     {
       id: {
         type: DataTypes.BIGINT,
@@ -48,20 +48,19 @@ module.exports = (sequelize: Sequelize) => {
         type: DataTypes.TEXT,
         allowNull: false,
       },
-      contactDetails: {
+      specialty: {
         type: DataTypes.TEXT,
       },
-      classType: {
-        type: DataTypes.ENUM('private', 'group'),
-        allowNull: false,
+      availableSchedule: {
+        type: DataTypes.TEXT,
       },
     },
     {
       sequelize,
-      modelName: "Student",
+      modelName: "Teacher",
       timestamps: true,
       underscored: false,
     }
   );
-  return Student;
+  return Teacher;
 };
