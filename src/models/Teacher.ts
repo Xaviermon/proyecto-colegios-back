@@ -11,13 +11,12 @@ export interface TeacherAttributes {
   updatedAt?: Date;
 }
 
-export interface TeacherInput extends Optional<TeacherAttributes, "id"> {}
-export interface TeacherOutput extends Required<TeacherAttributes> {}
+export interface TeacherInput extends Optional<TeacherAttributes, "id"> { }
+export interface TeacherOutput extends Required<TeacherAttributes> { }
 
 class Teacher
   extends Model<TeacherAttributes, TeacherInput>
-  implements TeacherAttributes
-{
+  implements TeacherAttributes {
   public id!: number;
   public firstName!: string;
   public lastName!: string;

@@ -11,13 +11,12 @@ export interface EnrollmentAttributes {
   updatedAt?: Date;
 }
 
-export interface EnrollmentInput extends Optional<EnrollmentAttributes, "id"> {}
-export interface EnrollmentOutput extends Required<EnrollmentAttributes> {}
+export interface EnrollmentInput extends Optional<EnrollmentAttributes, "id"> { }
+export interface EnrollmentOutput extends Required<EnrollmentAttributes> { }
 
 class Enrollment
   extends Model<EnrollmentAttributes, EnrollmentInput>
-  implements EnrollmentAttributes
-{
+  implements EnrollmentAttributes {
   public id!: number;
   public studentId!: number;
   public classId!: number;

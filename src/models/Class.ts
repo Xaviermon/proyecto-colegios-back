@@ -1,5 +1,4 @@
 import { Sequelize, Model, DataTypes, Optional } from "sequelize";
-
 export interface ClassAttributes {
   id: number;
   classType: 'private' | 'group';
@@ -10,13 +9,12 @@ export interface ClassAttributes {
   updatedAt?: Date;
 }
 
-export interface ClassInput extends Optional<ClassAttributes, "id"> {}
-export interface ClassOutput extends Required<ClassAttributes> {}
+export interface ClassInput extends Optional<ClassAttributes, "id"> { }
+export interface ClassOutput extends Required<ClassAttributes> { }
 
 class Class
   extends Model<ClassAttributes, ClassInput>
-  implements ClassAttributes
-{
+  implements ClassAttributes {
   public id!: number;
   public classType!: 'private' | 'group';
   public duration!: string; // Interval as string

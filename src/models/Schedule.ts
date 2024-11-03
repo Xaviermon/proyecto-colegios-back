@@ -11,13 +11,12 @@ export interface ScheduleAttributes {
   updatedAt?: Date;
 }
 
-export interface ScheduleInput extends Optional<ScheduleAttributes, "id"> {}
-export interface ScheduleOutput extends Required<ScheduleAttributes> {}
+export interface ScheduleInput extends Optional<ScheduleAttributes, "id"> { }
+export interface ScheduleOutput extends Required<ScheduleAttributes> { }
 
 class Schedule
   extends Model<ScheduleAttributes, ScheduleInput>
-  implements ScheduleAttributes
-{
+  implements ScheduleAttributes {
   public id!: number;
   public classId!: number;
   public dayOfWeek!: string; // Change to appropriate type or enum
