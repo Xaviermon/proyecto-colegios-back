@@ -11,7 +11,7 @@ export const getAllClassesController = async (req: Request, res: Response) => {
   try {
     const { page, limit } = req.query;
     const classes = await getAllClasses(Number(page), Number(limit));
-    res.json(classes);
+    res.status(200).json(classes);
   } catch (error: any) {
     ErrorHelper(res, error);
   }
@@ -20,7 +20,7 @@ export const getAllClassesController = async (req: Request, res: Response) => {
 export const createClassController = async (req: Request, res: Response) => {
   try {
     const newClass = await createClass(req.body);
-    res.json(newClass);
+    res.status(201).json(newClass);
   } catch (error: any) {
     ErrorHelper(res, error);
   }
@@ -29,7 +29,7 @@ export const createClassController = async (req: Request, res: Response) => {
 export const updateClassController = async (req: Request, res: Response) => {
   try {
     const updatedClass = await updateClass(Number(req.params.id), req.body);
-    res.json(updatedClass);
+    res.status(201).json(updatedClass);
   } catch (error: any) {
     ErrorHelper(res, error);
   }
@@ -38,7 +38,7 @@ export const updateClassController = async (req: Request, res: Response) => {
 export const deleteClassController = async (req: Request, res: Response) => {
   try {
     const message = await deleteClass(Number(req.params.id));
-    res.json(message);
+    res.status(200).json({ message });
   } catch (error: any) {
     ErrorHelper(res, error);
   }
