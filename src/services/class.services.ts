@@ -14,10 +14,12 @@ export const getAllClasses = async (
   const offset = (page - 1) * limit;
 
   // Find all classes with pagination
-  const { rows: classes, count: totalCount } = await db.Class.findAndCountAll({
+  const result = await db.Class.findAndCountAll({
     limit,
     offset,
   });
+  const classes = result.rows;
+  const totalCount = result.count;
 
   // Calculate total pages
   const totalPages = Math.ceil(totalCount / limit);
@@ -33,6 +35,10 @@ export const getAllClasses = async (
 export const createClass = async (
   data: ClassInput
 ): Promise<ClassOutput | { message: string }> => {
+  if (!data.classType) {
+    return { message: "Class type is required" };
+  }
+
   const existingClass = await db.Class.findOne({
     where: { classType: data.classType },
   }); // Check existence by classType (optional)
@@ -53,15 +59,23 @@ export const updateClass = async (
     return { message: `Class with ID ${id} not found` };
   }
 
-  await classToUpdate.update(data);
-  return await db.Class.findByPk(id); // Return the updated class object
+  try {
+    await classToUpdate.update(data);
+    return await db.Class.findByPk(id); // Return the updated class object
+  } catch (error) {
+    return { message: `Failed to update class with ID ${id}` };
+  }
 };
 
 export const deleteClass = async (id: number): Promise<{ message: string }> => {
-  const deletedCount = await db.Class.destroy({ where: { id } });
-  if (deletedCount === 0) {
-    return { message: `Class with ID ${id} not found` };
-  }
+  try {
+    const deletedCount = await db.Class.destroy({ where: { id } });
+    if (deletedCount === 0) {
+      return { message: `Class with ID ${id} not found` };
+    }
 
-  return { message: "Class deleted successfully" };
+    return { message: "Class deleted successfully" };
+  } catch (error) {
+    return { message: `Failed to delete class with ID ${id}` };
+  }
 };

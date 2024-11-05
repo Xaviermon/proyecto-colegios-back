@@ -7,7 +7,7 @@ import routerEnrollment from "./enrollment.router";
 
 const router = Router();
 
-router.get("/", (req, res) => {
+router.get("/", (_, res) => {
   res.send("back deploy railway");
 });
 

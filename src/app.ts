@@ -19,7 +19,7 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use(router);
 
-db.sequelize.sync({ alert: true }).then(() => {
+db.sequelize.sync({ alter: true }).then(() => {
   app.listen(process.env.APP_PORT, () => {
     console.log(`${process.env.APP_NAME} on port ${process.env.APP_PORT}`);
   });
