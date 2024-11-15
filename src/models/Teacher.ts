@@ -4,8 +4,11 @@ export interface TeacherAttributes {
   id: number;
   firstName: string;
   lastName: string;
+  email: string;
+  password: string;
   specialty?: string;
   availableSchedule?: string;
+  role?: string;
 
   createdAt?: Date;
   updatedAt?: Date;
@@ -21,8 +24,11 @@ class Teacher
   public id!: number;
   public firstName!: string;
   public lastName!: string;
+  public email!: string;
+  public password!: string;
   public specialty?: string;
   public availableSchedule?: string;
+  public role?: string;
 
   public readonly createdAt!: Date;
   public readonly updatedAt!: Date;
@@ -31,7 +37,7 @@ class Teacher
     Teacher.hasMany(models.Schedule, {
       foreignKey: "teacherId",
       as: "schedules",
-    }); // Assuming a relationship
+    });
   }
 }
 
@@ -56,6 +62,19 @@ module.exports = (sequelize: Sequelize) => {
       },
       availableSchedule: {
         type: DataTypes.TEXT,
+      },
+      email: {
+        type: DataTypes.TEXT,
+        allowNull: false,
+        unique: true,
+      },
+      password: {
+        type: DataTypes.TEXT,
+        allowNull: false,
+      },
+      role: {
+        type: DataTypes.TEXT,
+        defaultValue: "Teacher",
       },
     },
     {

@@ -4,7 +4,7 @@ import {
   createScheduleController,
   updateScheduleController,
   deleteScheduleController,
-} from "../controllers/schedule.controller";
+} from "../modules/scheduleModule/schedule.controller";
 
 const routerSchedule = Router();
 

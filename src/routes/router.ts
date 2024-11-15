@@ -4,6 +4,7 @@ import routerSchedule from "./schedule.router";
 import routerStudent from "./student.router";
 import routerTeacher from "./teacher.router";
 import routerEnrollment from "./enrollment.router";
+import routerAuthUser from "./authUser.router";
 
 const router = Router();
 
@@ -16,5 +17,6 @@ router.use("/schedule", routerSchedule);
 router.use("/student", routerStudent);
 router.use("/teacher", routerTeacher);
 router.use("/enrollment", routerEnrollment);
+router.use("/auth", routerAuthUser);
 
 export default router;

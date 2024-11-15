@@ -6,6 +6,9 @@ export interface StudentAttributes {
   lastName: string;
   contactDetails?: string;
   classType: "private" | "group";
+  email: string;
+  password: string;
+  role?: string;
 
   createdAt?: Date;
   updatedAt?: Date;
@@ -23,6 +26,9 @@ class Student
   public lastName!: string;
   public contactDetails?: string;
   public classType!: "private" | "group";
+  public email!: string;
+  public password!: string;
+  public role?: string;
 
   public readonly createdAt!: Date;
   public readonly updatedAt!: Date;
@@ -57,6 +63,19 @@ module.exports = (sequelize: Sequelize) => {
       classType: {
         type: DataTypes.ENUM("private", "group"),
         allowNull: false,
+      },
+      email: {
+        type: DataTypes.TEXT,
+        allowNull: false,
+        unique: true,
+      },
+      password: {
+        type: DataTypes.TEXT,
+        allowNull: false,
+      },
+      role: {
+        type: DataTypes.TEXT,
+        defaultValue: "Student",
       },
     },
     {

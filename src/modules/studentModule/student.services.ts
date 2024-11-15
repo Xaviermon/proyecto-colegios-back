@@ -1,5 +1,6 @@
 import db from "../../database/connect";
 import { StudentOutput, StudentInput } from "../../models/Student";
+import { encrypt } from "../../utils/password";
 
 export const getAllStudents = async (
   page: number,
@@ -35,6 +36,11 @@ export const createStudent = async (
   data: StudentInput
 ): Promise<StudentOutput | { message: string }> => {
   // Consider adding validation for unique constraints (e.g., email, phone number)
+  if (!data.password) {
+    return { message: "Password is required" };
+  }
+
+  data.password = await encrypt(data.password);
 
   const newStudent = await db.Student.create(data);
   return newStudent;

@@ -4,7 +4,7 @@ import {
   createClassController,
   updateClassController,
   deleteClassController,
-} from "../controllers/class.controller";
+} from "../modules/classModule/class.controller";
 
 const routerClass = Router();
 

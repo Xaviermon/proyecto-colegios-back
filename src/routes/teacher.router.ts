@@ -4,12 +4,12 @@ import {
   createTeacherController,
   updateTeacherController,
   deleteTeacherController,
-} from "../controllers/teacher.controller";
+} from "../modules/teacherModule/teacher.controller";
 
 const routerTeacher = Router();
 
 routerTeacher.get("/", getAllTeachersController);
-routerTeacher.post("/", createTeacherController);
+routerTeacher.post("/create", createTeacherController);
 routerTeacher.put("/:id", updateTeacherController);
 routerTeacher.delete("/:id", deleteTeacherController);
 

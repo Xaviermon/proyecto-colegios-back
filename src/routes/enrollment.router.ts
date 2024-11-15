@@ -4,7 +4,7 @@ import {
   createEnrollmentController,
   updateEnrollmentController,
   deleteEnrollmentController,
-} from "../controllers/enrollment.controller";
+} from "../modules/enrollmentModule/enrollment.controller";
 
 const routerEnrollment = Router();
 
