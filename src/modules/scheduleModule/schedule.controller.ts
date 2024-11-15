@@ -1,11 +1,11 @@
 import { Request, Response } from "express";
-import { ErrorHelper } from "../utils/errorController";
+import { ErrorHelper } from "../../utils/errorController";
 import {
   createSchedule,
   updateSchedule,
   getAllSchedules,
   deleteSchedule,
-} from "../services/schedule.services";
+} from "./schedule.services";
 
 export const createScheduleController = async (req: Request, res: Response) => {
   try {

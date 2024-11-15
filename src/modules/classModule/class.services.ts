@@ -1,5 +1,5 @@
-import db from "../database/connect";
-import { ClassInput, ClassOutput } from "../models/Class";
+import db from "../../database/connect";
+import { ClassInput, ClassOutput } from "../../models/Class";
 
 export const getAllClasses = async (
   page: number,

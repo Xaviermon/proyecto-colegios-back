@@ -1,11 +1,11 @@
 import { Request, Response } from "express";
-import { ErrorHelper } from "../utils/errorController";
+import { ErrorHelper } from "../../utils/errorController";
 import {
   getAllClasses,
   createClass,
   updateClass,
   deleteClass,
-} from "../services/class.services";
+} from "./class.services";
 
 export const getAllClassesController = async (req: Request, res: Response) => {
   try {

@@ -1,5 +1,5 @@
-import db from "../database/connect";
-import { ScheduleOutput, ScheduleInput } from "../models/Schedule";
+import db from "../../database/connect";
+import { ScheduleOutput, ScheduleInput } from "../../models/Schedule";
 
 export const getAllSchedules = async (
   page: number,

@@ -1,5 +1,5 @@
-import db from "../database/connect";
-import { EnrollmentInput, EnrollmentOutput } from "../models/Enrollment";
+import db from "../../database/connect";
+import { EnrollmentInput, EnrollmentOutput } from "../../models/Enrollment";
 
 export const getAllEnrollments = async (
   page: number,

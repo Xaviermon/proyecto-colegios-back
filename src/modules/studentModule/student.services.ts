@@ -1,5 +1,5 @@
-import db from "../database/connect";
-import { StudentOutput, StudentInput } from "../models/Student";
+import db from "../../database/connect";
+import { StudentOutput, StudentInput } from "../../models/Student";
 
 export const getAllStudents = async (
   page: number,

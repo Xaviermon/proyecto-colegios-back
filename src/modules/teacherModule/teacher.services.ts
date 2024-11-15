@@ -1,5 +1,5 @@
-import db from "../database/connect";
-import { TeacherOutput, TeacherInput } from "../models/Teacher";
+import db from "../../database/connect";
+import { TeacherOutput, TeacherInput } from "../../models/Teacher";
 
 export const getAllTeachers = async (
     page: number,
